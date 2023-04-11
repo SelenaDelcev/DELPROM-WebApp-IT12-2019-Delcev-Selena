@@ -1,0 +1,1485 @@
+{
+	"info": {
+		"_postman_id": "3632c4cf-a5db-4754-8ff8-4035435e1f4e",
+		"name": "DELPROM CRUDTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23987131"
+	},
+	"item": [
+		{
+			"name": "Kategorija",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nazivKategorije\": \"Test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/kategorija",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"kategorija"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Kategorija",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/kategorija",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"kategorija"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "KategorijaById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/kategorija/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"kategorija",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Kategorija",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nazivKategorije\": \"Test123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/kategorija/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"kategorija",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Kategorija",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/kategorija/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"kategorija",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Korisnik",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ime\": \"John\",\r\n    \"prezime\": \"Doe\",\r\n    \"datumRodjenja\": \"1999-12-31\",\r\n    \"email\": \"john@example.com\",\r\n    \"telefon\": \"123094478\",\r\n    \"adresa\": \"123 Main Street\",\r\n    \"username\": \"johndoe\",\r\n    \"password\": \"secret\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/korisnik",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"korisnik"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Korisnik",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/korisnik",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"korisnik"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "KorisnikById",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/korisnik/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"korisnik",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Korisnik",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"korisnikId\": 9,\r\n    \"ime\": \"John\",\r\n    \"prezime\": \"Doe\",\r\n    \"datumRodjenja\": \"1999-12-30T23:00:00.000+00:00\",\r\n    \"email\": \"john@example.com\",\r\n    \"telefon\": \"123094478\",\r\n    \"adresa\": \"123 Main Test\",\r\n    \"username\": \"johndoe\",\r\n    \"password\": \"secret\",\r\n    \"uloga\": \"ROLE_ADMIN\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/korisnik/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"korisnik",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Korisnik",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/korisnik/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"korisnik",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Placanje",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"vrstaPlacanja\": \"Onlajn\",\r\n    \"odobrenPopust\": 500,\r\n    \"datumPlacanja\": \"2023-04-04\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/placanje",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"placanje"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Placanje",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/placanje",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"placanje"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PlacanjeById",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/placanje/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"placanje",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Placanje",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"vrstaPlacanja\": \"Onlajn\",\r\n    \"odobrenPopust\": 500,\r\n    \"datumPlacanja\": \"2023-04-11\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/placanje/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"placanje",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Placanje",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/placanje/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"placanje",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Proizvod",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sifraProizvoda\": \"BI002454\",\r\n    \"nazivProizvoda\":\"Test\",\r\n    \"cena\": 10000,\r\n    \"nazivProizvodjaca\": \"Test\",\r\n    \"boja\": \"Test\",\r\n    \"namena\": \"Test\",\r\n    \"opisProizvoda\": \"Test\",\r\n    \"slika\": \"Test\",\r\n    \"kolicinaNaStanju\": 10,\r\n    \"kategorijaId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/proizvod",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"proizvod"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Proizvod",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/proizvod",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"proizvod"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ProizvodById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/proizvod/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"proizvod",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ProizvodByKategorijaId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/kategorija/5/proizvod",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"kategorija",
+						"5",
+						"proizvod"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Proizvod",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sifraProizvoda\": \"BI11110\",\r\n    \"nazivProizvoda\":\"Test1\",\r\n    \"cena\": 10000,\r\n    \"nazivProizvodjaca\": \"Test\",\r\n    \"boja\": \"Test\",\r\n    \"namena\": \"Test2\",\r\n    \"opisProizvoda\": \"Test1\",\r\n    \"slika\": \"Test123\",\r\n    \"kolicinaNaStanju\": 10,\r\n    \"kategorijaId\": 6\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/kategorija/1/proizvod/16",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"kategorija",
+						"1",
+						"proizvod",
+						"16"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Proizvod",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/proizvod/16",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"proizvod",
+						"16"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dostava",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"statusDostave\": \"U toku\",\r\n    \"datumDostave\": null,\r\n    \"tipDostave\": \"Dostava na kucnu adresu\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/dostava",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"dostava"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dostava",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/dostava",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"dostava"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DostavaById",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/dostava/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"dostava",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dostava",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dostavaId\": 1,\r\n    \"troskoviDostave\": 300,\r\n    \"statusDostave\": \"Vracena\",\r\n    \"datumDostave\": \"2023-04-08\",\r\n    \"tipDostave\": \"Dostava na kucnu adresu\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/dostava/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"dostava",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dostava",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/dostava/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"dostava",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Porudzbina",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"datumPorudzbine\": \"2023-04-11\",\r\n    \"statusPorudzbine\": \"U toku\",\r\n    \"korisnikId\": 6,\r\n    \"dostavaId\": 7,\r\n    \"placanjeId\": 6\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/porudzbina",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"porudzbina"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Porudzbina",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/porudzbina",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"porudzbina"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PorudzbinaById",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/porudzbina/id/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"porudzbina",
+						"id",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PorudzbinaByKorisnikId",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/porudzbina/korisnik/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"porudzbina",
+						"korisnik",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PorudzbinaByDostavaIdAndPlacanjeId",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/porudzbina/dostava/1/placanje/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"porudzbina",
+						"dostava",
+						"1",
+						"placanje",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PorudzbinaByDostavaId",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/porudzbina/dostava/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"porudzbina",
+						"dostava",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PorudzbinaByPlacanjeId",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/porudzbina/placanje/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"porudzbina",
+						"placanje",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Porudzbina",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"statusPorudzbine\": \"Placena\",\r\n    \"datumPorudzbine\": \"2023-04-03\",\r\n    \"korisnikId\": 5,\r\n    \"dostavaId\": 3,\r\n    \"placanjeId\": 4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/porudzbina/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"porudzbina",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Porudzbina",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "DELPROM2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SelenaDelcev",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/porudzbina/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"porudzbina",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "StavkaPorudzbine",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"kolicina\": 1,\r\n    \"porudzbinaId\": 2,\r\n    \"proizvodId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/stavkaporudzbine",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"stavkaporudzbine"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "StavkaPorudzbineByPorudzbinaId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/stavkaporudzbine/porudzbina/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"stavkaporudzbine",
+						"porudzbina",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "StavkaPorudzbineByProizvodId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/stavkaporudzbine/proizvod/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"stavkaporudzbine",
+						"proizvod",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "StavkaPorudzbine",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"kolicina\": 2,\r\n    \"porudzbinaId\": 2,\r\n    \"proizvodId\": 1\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/stavkaporudzbine/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"stavkaporudzbine",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "StavkaPorudzbine",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/stavkaporudzbine/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"stavkaporudzbine",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOGIN",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"usernameOrEmail\":\"SelenaDelcev\",\r\n    \"password\":\"DELPROM2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "REGISTRATION",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ime\": \"Test\",\r\n    \"prezime\": \"Test\",\r\n    \"datumRodjenja\": \"2001-01-04\",\r\n    \"email\": \"john.test@example.com\",\r\n    \"telefon\": \"1234567890\",\r\n    \"adresa\": \"123 Main Street\",\r\n    \"username\": \"test\",\r\n    \"password\": \"test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
