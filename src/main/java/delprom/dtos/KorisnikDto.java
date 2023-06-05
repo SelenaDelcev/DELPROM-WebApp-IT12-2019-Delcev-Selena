@@ -36,6 +36,7 @@ public class KorisnikDto {
 	private String username;
 
 	@NotEmpty(message = "Password cannot be empty")
+	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$", message = "Password must contain at least one lowercase letter, one uppercase letter, one number, and a minimum length of 8 characters.")
 	private String password;
 
 	private String uloga;

@@ -47,7 +47,7 @@ public class ProizvodServiceImpl implements ProizvodService {
 	public ProizvodResponse getAllProizvod(Integer pageNo, Integer pageSize, String sortBy, String sortDir) {
 		Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending()
 				: Sort.by(sortBy).descending();
-		
+
 		// create Pageable instance
 		Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
 
@@ -71,10 +71,30 @@ public class ProizvodServiceImpl implements ProizvodService {
 	}
 
 	@Override
-	public List<ProizvodDto> getProizvodByKategorijaId(Integer kategorijaId) {
-		List<Proizvod> proizvods = proizvodRepository.findByKategorijaKategorijaId(kategorijaId);
+	public ProizvodResponse getProizvodByKategorijaId(Integer kategorijaId, Integer pageNo, Integer pageSize,
+			String sortBy, String sortDir) {
+		Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending()
+				: Sort.by(sortBy).descending();
+		// create Pageable instance
+		Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
 
-		return proizvods.stream().map(proizvod -> mapToDTO(proizvod)).collect(Collectors.toList());
+		Page<Proizvod> proizvods = proizvodRepository.findByKategorijaKategorijaId(kategorijaId, pageable);
+
+		// get content for page object
+		List<Proizvod> listOfProizvod = proizvods.getContent();
+
+		List<ProizvodDto> content = listOfProizvod.stream().map(proizvod -> mapToDTO(proizvod))
+				.collect(Collectors.toList());
+
+		ProizvodResponse proizvodResponse = new ProizvodResponse();
+		proizvodResponse.setContent(content);
+		proizvodResponse.setPageNo(proizvods.getNumber());
+		proizvodResponse.setPageSize(proizvods.getSize());
+		proizvodResponse.setTotalElements(proizvods.getTotalElements());
+		proizvodResponse.setTotalPages(proizvods.getTotalPages());
+		proizvodResponse.setLast(proizvods.isLast());
+
+		return proizvodResponse;
 	}
 
 	@Override
@@ -146,6 +166,33 @@ public class ProizvodServiceImpl implements ProizvodService {
 		proizvod.setSlika(proizvodDto.getSlika());
 		proizvod.setKolicinaNaStanju(proizvodDto.getKolicinaNaStanju());
 		return proizvod;
+	}
+
+	@Override
+	public ProizvodResponse searchProizvod(String keywords, Integer pageNo, Integer pageSize, String sortBy,
+			String sortDir) {
+		Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortBy).ascending()
+				: Sort.by(sortBy).descending();
+		// create Pageable instance
+		Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
+
+		Page<Proizvod> proizvods = proizvodRepository.findByNazivProizvodaContainingIgnoreCase(keywords, pageable);
+
+		// get content for page object
+		List<Proizvod> listOfProizvod = proizvods.getContent();
+
+		List<ProizvodDto> content = listOfProizvod.stream().map(proizvod -> mapToDTO(proizvod))
+				.collect(Collectors.toList());
+
+		ProizvodResponse proizvodResponse = new ProizvodResponse();
+		proizvodResponse.setContent(content);
+		proizvodResponse.setPageNo(proizvods.getNumber());
+		proizvodResponse.setPageSize(proizvods.getSize());
+		proizvodResponse.setTotalElements(proizvods.getTotalElements());
+		proizvodResponse.setTotalPages(proizvods.getTotalPages());
+		proizvodResponse.setLast(proizvods.isLast());
+
+		return proizvodResponse;
 	}
 
 }

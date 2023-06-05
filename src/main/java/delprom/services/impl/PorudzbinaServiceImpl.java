@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import delprom.dtos.PorudzbinaDto;
@@ -15,6 +16,7 @@ import delprom.entities.Dostava;
 import delprom.entities.Korisnik;
 import delprom.entities.Placanje;
 import delprom.entities.Porudzbina;
+import delprom.exceptions.DelpromAPIException;
 import delprom.exceptions.ResourceNotFoundException;
 import delprom.repositories.DostavaRepository;
 import delprom.repositories.KorisnikRepository;
@@ -58,6 +60,14 @@ public class PorudzbinaServiceImpl implements PorudzbinaService {
 		PorudzbinaDto porudzbinaResponse = mapToDTO(newPorudzbina);
 		return porudzbinaResponse;
 	}
+	
+	@Override
+    public void updateStripeId(Integer porudzbinaId, String stripeId) {
+        Porudzbina porudzbina = porudzbinaRepository.findById(porudzbinaId)
+                .orElseThrow(() -> new DelpromAPIException(HttpStatus.NOT_FOUND, "Order not found"));
+        porudzbina.setStripeId(stripeId);
+        porudzbinaRepository.save(porudzbina);
+    }
 
 	private PorudzbinaDto mapToDTO(Porudzbina porudzbina) {
 		PorudzbinaDto porudzbinaDto = new PorudzbinaDto();
@@ -111,6 +121,15 @@ public class PorudzbinaServiceImpl implements PorudzbinaService {
 
 		return porudzbinas.stream().map(porudzbina -> mapToDTO(porudzbina)).collect(Collectors.toList());
 	}
+	
+	@Override
+    public List<PorudzbinaDto> getPorudzbinaByAuthenticatedUser(Integer korisnikId) {
+        // Retrieve the orders for the authenticated user based on their ID
+        List<Porudzbina> porudzbinas = porudzbinaRepository.findByKorisnikKorisnikIdOrderByDatumPorudzbineDesc(korisnikId);
+
+        // Map the orders to DTOs and return them
+        return porudzbinas.stream().map(porudzbina -> mapToDTO(porudzbina)).collect(Collectors.toList());
+    }
 
 	@Override
 	public PorudzbinaDto getPorudzbinaByDostavaIdAndPlacanjeId(Integer dostavaId, Integer placanjeId) {

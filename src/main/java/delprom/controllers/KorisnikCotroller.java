@@ -1,8 +1,11 @@
 package delprom.controllers;
 
+import java.security.Principal;
+
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,9 +28,8 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api")
-@Tag(
-		name = "CRUD REST APIs for User Resource"
-)
+@CrossOrigin("http://localhost:3000")
+@Tag(name = "CRUD REST APIs for User Resource")
 public class KorisnikCotroller {
 
 	private KorisnikService korisnikService;
@@ -37,13 +39,8 @@ public class KorisnikCotroller {
 	}
 
 	// create user
-	@Operation(
-			summary = "Create User REST API",
-			description = "Create user REST API is used to save user into database")
-	@ApiResponse(
-			responseCode = "201",
-			description = "Http Status 201 CREATED"
-	)
+	@Operation(summary = "Create User REST API", description = "Create user REST API is used to save user into database")
+	@ApiResponse(responseCode = "201", description = "Http Status 201 CREATED")
 	@SecurityRequirement(name = "Bear Authentication")
 	@PostMapping("/korisnik")
 	public ResponseEntity<?> createKorisnik(@Valid @RequestBody KorisnikDto korisnikDto) {
@@ -56,13 +53,8 @@ public class KorisnikCotroller {
 	}
 
 	// get all users rest api
-	@Operation(
-			summary = "Get User REST API",
-			description = "Get user REST API is used to get all users from the database")
-	@ApiResponse(
-			responseCode = "200",
-			description = "Http Status 200 SUCCESS"
-	)
+	@Operation(summary = "Get User REST API", description = "Get user REST API is used to get all users from the database")
+	@ApiResponse(responseCode = "200", description = "Http Status 200 SUCCESS")
 	@SecurityRequirement(name = "Bear Authentication")
 	@GetMapping("/korisnik")
 	public KorisnikResponse getAllKorisnik(
@@ -74,27 +66,32 @@ public class KorisnikCotroller {
 	}
 
 	// get user by id
-	@Operation(
-			summary = "Get User By Id REST API",
-			description = "Get user by id REST API is used to get particular user from the database")
-	@ApiResponse(
-			responseCode = "200",
-			description = "Http Status 200 SUCCESS"
-	)
+	@Operation(summary = "Get User By Id REST API", description = "Get user by id REST API is used to get particular user from the database")
+	@ApiResponse(responseCode = "200", description = "Http Status 200 SUCCESS")
 	@SecurityRequirement(name = "Bear Authentication")
 	@GetMapping(value = "/korisnik/{id}")
 	public ResponseEntity<KorisnikDto> getKorisnikById(@PathVariable(name = "id") Integer id) {
 		return ResponseEntity.ok(korisnikService.getKorisnikById(id));
 	}
 
+	// get user
+	@Operation(summary = "Get your data REST API", description = "Get your data REST API is used to get particular user from the database")
+	@ApiResponse(responseCode = "200", description = "Http Status 200 SUCCESS")
+	@SecurityRequirement(name = "Bear Authentication")
+	@GetMapping("/mojipodaci")
+	public ResponseEntity<KorisnikDto> getKorisnikById(Principal principal) {
+		String userEmail = principal.getName();
+
+		// Use the user's email address to retrieve their data from the database
+		KorisnikDto korisnikDto = korisnikService.getMyDataByEmail(userEmail);
+
+		// Return the user's data in the response
+		return ResponseEntity.ok(korisnikDto);
+	}
+
 	// update user by id
-	@Operation(
-			summary = "Put User By Id REST API",
-			description = "Put user by id REST API is used to put particular user from the database")
-	@ApiResponse(
-			responseCode = "200",
-			description = "Http Status 200 SUCCESS"
-	)
+	@Operation(summary = "Put User By Id REST API", description = "Put user by id REST API is used to put particular user from the database")
+	@ApiResponse(responseCode = "200", description = "Http Status 200 SUCCESS")
 	@SecurityRequirement(name = "Bear Authentication")
 	@PutMapping("/korisnik/{id}")
 	public ResponseEntity<?> updateKorisnik(@Valid @RequestBody KorisnikDto korisnikDto,
@@ -109,14 +106,26 @@ public class KorisnikCotroller {
 		}
 	}
 
+	// update your data
+	@Operation(summary = "Update your data REST API", description = "Update your REST API is used to put particular user from the database")
+	@ApiResponse(responseCode = "200", description = "Http Status 200 SUCCESS")
+	@SecurityRequirement(name = "Bear Authentication")
+	@PutMapping("/mojipodaci")
+	public ResponseEntity<?> updateKorisnik(@Valid @RequestBody KorisnikDto korisnikDto, Principal principal) {
+
+		try {
+	        String userEmail = principal.getName();
+	        KorisnikDto korisnikResponse = korisnikService.updateMyData(korisnikDto, userEmail);
+
+	        return new ResponseEntity<>(korisnikResponse, HttpStatus.OK);
+	    } catch (DataIntegrityViolationException ex) {
+	        return ResponseEntity.badRequest().body("Invalid user data");
+	    } 
+	}
+
 	// delete user by id
-	@Operation(
-			summary = "Delete User By Id REST API",
-			description = "Delete user by id REST API is used to delete particular user from the database")
-	@ApiResponse(
-			responseCode = "200",
-			description = "Http Status 200 SUCCESS"
-	)
+	@Operation(summary = "Delete User By Id REST API", description = "Delete user by id REST API is used to delete particular user from the database")
+	@ApiResponse(responseCode = "200", description = "Http Status 200 SUCCESS")
 	@SecurityRequirement(name = "Bear Authentication")
 	@DeleteMapping("/korisnik/{id}")
 	public ResponseEntity<String> deleteKorisnik(@PathVariable(name = "id") Integer id) {

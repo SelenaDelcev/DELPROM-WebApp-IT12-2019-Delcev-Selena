@@ -1,14 +1,20 @@
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ProizvodModel from "../../models/ProizvodModel";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/cart/cartReducer";
 
 interface Props {
     mobile: any;
     isLoggedIn: boolean;
     product?: ProizvodModel;
-    addToCart: any;
 }
 
-export const CheckoutBox: React.FC<Props> = ({ isLoggedIn, mobile, product, addToCart }) => {
+export const CheckoutBox: React.FC<Props> = ({ isLoggedIn, mobile, product }) => {
+    const dispatch = useDispatch();
+
+    const handleAddToCart = () => {
+        dispatch(addToCart(product));
+    };
 
     return (
         <div className={mobile ? 'card d-flex mt-5' : 'card col-3 checkoutContainer d-flex mb-5'}>
@@ -24,10 +30,11 @@ export const CheckoutBox: React.FC<Props> = ({ isLoggedIn, mobile, product, addT
                         </h4>
                     }
                 </div>
+                
                 {!isLoggedIn ?
                     <Link type='button' className='btn buttonForSignIn' to='/login'>Prijava</Link>
                     :
-                    <Link type='button' className='btn buttonForSignIn' to='/checkout/:proizvodId' onClick={() => addToCart(product)}>Dodaj u korpu</Link>
+                    <Link type='button' className='btn buttonForSignIn' to='/checkout/:proizvodId' onClick={handleAddToCart}>Dodaj u korpu</Link>
                 }
             </div>
         </div>

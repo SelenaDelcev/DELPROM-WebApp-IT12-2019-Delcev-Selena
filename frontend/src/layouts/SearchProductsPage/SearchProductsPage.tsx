@@ -2,11 +2,15 @@ import { useEffect, useState } from "react";
 import ProizvodModel from "../../models/ProizvodModel";
 import { SpinnerLoading } from "../Utils/SpinnerLoading";
 import axios from 'axios';
-import { SearchProduct } from "./components/SearchProduct";
+import SearchProduct from "./components/SearchProduct";
 import { Pagination } from "../Utils/Pagination";
 import { Link } from "react-router-dom";
 
-export const SearchProductsPage = () => {
+interface Props {
+    showCartButton: boolean;
+}
+
+const SearchProductsPage: React.FC<Props> = ({ showCartButton }) => {
     const [products, setProducts] = useState<ProizvodModel[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState(null);
@@ -27,13 +31,17 @@ export const SearchProductsPage = () => {
             if (searchUrl === '') {
                 url = `${baseUrl}?pageNo=${currentPage - 1}&pageSize=${productsPerPage}`;
             } else {
-                url = baseUrl + searchUrl;
+                url = `${baseUrl}${searchUrl}`;
             }
 
-            const responseData = axios.get(url);
+            console.log(url);
 
-            const response = await responseData;
+            const responseData = await axios.get(url);
+
+            const response = responseData;
+            console.log(response);
             setTotalAmountOfProducts(response.data.totalElements);
+            console.log("Updated totalAmountOfProducts", response.data.totalElements);
             setTotalPages(response.data.totalPages)
             setProducts(response.data.content);
             setIsLoading(false);
@@ -44,7 +52,12 @@ export const SearchProductsPage = () => {
         })
 
         window.scrollTo(0, 0);
-    }, [currentPage, searchUrl]);
+    }, [currentPage, categorySelection, searchUrl]);
+
+    useEffect(() => {
+        console.log("Total amount", totalAmountOfProducts);
+    }, [totalAmountOfProducts]);
+
 
     if (isLoading) {
         return (
@@ -61,7 +74,6 @@ export const SearchProductsPage = () => {
     }
 
     const searchHandleChange = () => {
-        setCurrentPage(1);
         if (search === '') {
             setSearchUrl('');
         } else {
@@ -71,21 +83,29 @@ export const SearchProductsPage = () => {
     }
 
     const categoryField = async (value: string) => {
+        let kategorijaId = '';
+
         if (value.toLowerCase() === 'bicikli') {
             setCategorySelection(value);
-            setSearchUrl(`/search/1`)
+            kategorijaId = '1';
         } else if (value.toLowerCase() === 'delovi') {
             setCategorySelection(value);
-            setSearchUrl(`/search/2`);
+            kategorijaId = '2';
         } else if (value.toLowerCase() === 'oprema') {
             setCategorySelection(value);
-            setSearchUrl(`/search/3`);
+            kategorijaId = '3';
         } else if (value.toLowerCase() === 'ostalo') {
             setCategorySelection(value)
-            setSearchUrl(`/search/4`)
+            kategorijaId = '4';
         } else {
             setCategorySelection('Svi');
-            setSearchUrl(`?pageNo=0&pageSize=${productsPerPage}`)
+        }
+
+        // Update the searchUrl based on the selected category
+        if (kategorijaId) {
+            setSearchUrl(`/search/${kategorijaId}`);
+        } else {
+            setSearchUrl(`?pageNo=0&pageSize=${productsPerPage}`);
         }
     }
 
@@ -148,26 +168,26 @@ export const SearchProductsPage = () => {
                             </div>
                         </div>
                     </div>
-                    {totalAmountOfProducts > 0 ? 
-                    <>
-                    <div className="mt-3">
-                        <h5>Broj rezultata: ({totalAmountOfProducts})</h5>
-                    </div>
-                    <p>
-                        {indexOfFirstProduct + 1} do {lastItem} u {totalAmountOfProducts} stavki:
-                    </p>
-                    {products.map(product => (
-                        <SearchProduct product={product} key={product.proizvodId} />
-                    ))}
-                    </>
-                    :
-                    <div className="m-5">
-                        <h6 className="notFound">Nijedan proizvod ne odgovara izabranim kriterijumima.</h6>
-                        <h3>
-                            Ne mozete da pronadjete ono sto trazite?
-                        </h3>
-                        <Link type="button" className="btn main-color btn-md px-4 me-md-2 fw-bold text-white" to='/search'>Pogledaj ponudu</Link>
-                    </div>
+                    {totalAmountOfProducts > 0 ?
+                        <>
+                            <div className="mt-3">
+                                <h5>Broj rezultata: ({totalAmountOfProducts})</h5>
+                            </div>
+                            <p>
+                                {indexOfFirstProduct + 1} do {lastItem} u {totalAmountOfProducts} stavki:
+                            </p>
+                            {products.map(product => (
+                                <SearchProduct product={product} key={product.proizvodId} showCartButton={showCartButton} />
+                            ))}
+                        </>
+                        :
+                        <div className="m-5">
+                            <h6 className="notFound">Nijedan proizvod ne odgovara izabranim kriterijumima.</h6>
+                            <h3>
+                                Ne mozete da pronadjete ono sto trazite?
+                            </h3>
+                            <Link type="button" className="btn main-color btn-md px-4 me-md-2 fw-bold text-white" to='/search'>Pogledaj ponudu</Link>
+                        </div>
                     }
                     {totalPages > 1 &&
                         <Pagination currentPage={currentPage} totalPages={totalPages} paginate={paginate} />}
@@ -176,3 +196,5 @@ export const SearchProductsPage = () => {
         </div >
     );
 }
+
+export default SearchProductsPage;

@@ -1,10 +1,10 @@
 package delprom.controllers;
 
-import java.util.List;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +19,6 @@ import delprom.dtos.ProizvodDto;
 import delprom.dtos.ProizvodResponse;
 import delprom.services.ProizvodService;
 import delprom.utils.AppConstants;
-import delprom.exceptions.ErrorResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -27,6 +26,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController
+@CrossOrigin("http://localhost:3000")
 @RequestMapping("/api")
 @Tag(name = "CRUD REST APIs for Product Resource")
 public class ProizvodController {
@@ -62,19 +62,25 @@ public class ProizvodController {
 		return proizvodService.getAllProizvod(pageNo, pageSize, sortBy, sortDir);
 	}
 
+	@GetMapping("/proizvod/search")
+	public ProizvodResponse searchProizvod(@RequestParam("keywords") String keywords,
+			@RequestParam(value = "pageNo", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER, required = false) int pageNo,
+			@RequestParam(value = "pageSize", defaultValue = AppConstants.DEFAULT_PAGE_SIZE, required = false) int pageSize,
+			@RequestParam(value = "sortBy", defaultValue = "proizvodId", required = false) String sortBy,
+			@RequestParam(value = "sortDir", defaultValue = AppConstants.DEFAULT_SORT_DIRECTION, required = false) String sortDir) {
+		return proizvodService.searchProizvod(keywords, pageNo, pageSize, sortBy, sortDir);
+	}
+
 	// get all products by category
 	@Operation(summary = "Get All Products By Category REST API", description = "Get all products by category REST API is used to get all products by category from the database")
-	@ApiResponse(responseCode = "200", description = "Http Status 200 SUCCESS")
-	@GetMapping("/kategorija/{kategorijaId}/proizvod")
-	public ResponseEntity<?> getProizvodByKategorijaId(@PathVariable(value = "kategorijaId") Integer kategorijaId) {
+	@GetMapping("/proizvod/search/{kategorijaId}")
+	public ProizvodResponse getProizvodByKategorijaId(@PathVariable("kategorijaId") Integer kategorijaId,
+	        @RequestParam(value = "pageNo", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER, required = false) int pageNo,
+	        @RequestParam(value = "pageSize", defaultValue = AppConstants.DEFAULT_PAGE_SIZE, required = false) int pageSize,
+	        @RequestParam(value = "sortBy", defaultValue = "proizvodId", required = false) String sortBy,
+	        @RequestParam(value = "sortDir", defaultValue = AppConstants.DEFAULT_SORT_DIRECTION, required = false) String sortDir) {
 
-		List<ProizvodDto> proizvodi = proizvodService.getProizvodByKategorijaId(kategorijaId);
-		
-		if (proizvodi.isEmpty()) {
-			ErrorResponse errorResponse = new ErrorResponse("No products found for the specified category ID.");
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
-		}
-		return ResponseEntity.ok(proizvodi);
+	    return proizvodService.getProizvodByKategorijaId(kategorijaId, pageNo, pageSize, sortBy, sortDir);
 	}
 
 	// get product by id from category by id

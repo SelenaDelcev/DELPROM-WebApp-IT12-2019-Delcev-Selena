@@ -11,7 +11,7 @@ import io.swagger.v3.oas.annotations.info.Info;
 @OpenAPIDefinition(
 		info = @Info(
 				title = "Spring Boot DELPROM WebApp REST APIs",
-				description = "Spring Boot DELPROM WebApp REST APIs Documentation",
+				description = "Spring Boot DELPROM WebApp RESzT APIs Documentation",
 				version = "v1.0",
 				contact = @Contact(
 						name = "Selena Delčev",

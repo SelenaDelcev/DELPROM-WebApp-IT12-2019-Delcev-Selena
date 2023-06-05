@@ -2,7 +2,11 @@ import { Banner } from '../HomePage/components/Banner';
 import { Category } from './components/Category';
 import { Carousel } from './components/Carousel';
 
-export const HomePage = () => {
+interface Props {
+    isLoggedIn: boolean;
+}
+
+export const HomePage: React.FC<Props> = ({ isLoggedIn }) => {
     return (
         <div className="header-widget-region" role="complementary">
             <div className="col-full">
@@ -11,7 +15,7 @@ export const HomePage = () => {
                 </div>
                 <Banner/>
                 <Category/>
-                <Carousel />
+                <Carousel isLoggedIn={isLoggedIn}/>
             </div>
         </div>
     );

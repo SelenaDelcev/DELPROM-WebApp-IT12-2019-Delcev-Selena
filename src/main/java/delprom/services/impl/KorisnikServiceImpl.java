@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,8 @@ import org.springframework.stereotype.Service;
 import delprom.dtos.KorisnikDto;
 import delprom.dtos.KorisnikResponse;
 import delprom.entities.Korisnik;
+import delprom.exceptions.DelpromAPIException;
+import delprom.exceptions.ForbiddenException;
 import delprom.exceptions.ResourceNotFoundException;
 import delprom.repositories.KorisnikRepository;
 import delprom.services.KorisnikService;
@@ -24,7 +27,7 @@ public class KorisnikServiceImpl implements KorisnikService {
 
 	@Autowired
 	private KorisnikRepository korisnikRepository;
-	
+
 	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
 	public KorisnikServiceImpl(KorisnikRepository korisnikRepository, PasswordEncoder passwordEncoder) {
@@ -78,6 +81,14 @@ public class KorisnikServiceImpl implements KorisnikService {
 	}
 
 	@Override
+	public KorisnikDto getMyDataByEmail(String email) {
+
+		Korisnik korisnik = korisnikRepository.findByEmail(email).orElseThrow();
+		return mapToDTO(korisnik);
+
+	}
+
+	@Override
 	public KorisnikDto updateKorisnik(KorisnikDto korisnikDto, Integer id) {
 		Korisnik korisnik = korisnikRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
@@ -94,6 +105,27 @@ public class KorisnikServiceImpl implements KorisnikService {
 		Korisnik updatedKorisnik = korisnikRepository.save(korisnik);
 		return mapToDTO(updatedKorisnik);
 	}
+
+	@Override
+	public KorisnikDto updateMyData(KorisnikDto korisnikDto, String userEmail) {
+		// check if the user is authorized to update the data
+	    Korisnik existingKorisnik = korisnikRepository.findByEmail(userEmail)
+	            .orElseThrow(() -> new DelpromAPIException(HttpStatus.NOT_FOUND, "User not found with this email"));
+	    if (!existingKorisnik.getKorisnikId().equals(korisnikDto.getKorisnikId())) {
+	        throw new ForbiddenException("You are not authorized to update other user's data");
+	    }
+
+	    // update the user data
+	    existingKorisnik.setIme(korisnikDto.getIme());
+	    existingKorisnik.setPrezime(korisnikDto.getPrezime());
+	    existingKorisnik.setDatumRodjenja(korisnikDto.getDatumRodjenja());
+	    existingKorisnik.setAdresa(korisnikDto.getAdresa());
+	    existingKorisnik.setTelefon(korisnikDto.getTelefon());
+	    existingKorisnik.setEmail(korisnikDto.getEmail());
+
+	    Korisnik updatedKorisnik = korisnikRepository.save(existingKorisnik);
+	    return mapToDTOData(updatedKorisnik);
+    }
 
 	@Override
 	public void deleteKorisnikById(Integer id) {
@@ -130,6 +162,19 @@ public class KorisnikServiceImpl implements KorisnikService {
 		korisnikDto.setUsername(korisnik.getUsername());
 		korisnikDto.setPassword(korisnik.getPassword());
 		korisnikDto.setUloga(korisnik.getUloga());
+		return korisnikDto;
+	}
+
+	// convert Entity into DTO
+	private KorisnikDto mapToDTOData(Korisnik korisnik) {
+		KorisnikDto korisnikDto = new KorisnikDto();
+		korisnikDto.setKorisnikId(korisnik.getKorisnikId());
+		korisnikDto.setIme(korisnik.getIme());
+		korisnikDto.setPrezime(korisnik.getPrezime());
+		korisnikDto.setDatumRodjenja(korisnik.getDatumRodjenja());
+		korisnikDto.setAdresa(korisnik.getAdresa());
+		korisnikDto.setTelefon(korisnik.getTelefon());
+		korisnikDto.setEmail(korisnik.getEmail());
 		return korisnikDto;
 	}
 

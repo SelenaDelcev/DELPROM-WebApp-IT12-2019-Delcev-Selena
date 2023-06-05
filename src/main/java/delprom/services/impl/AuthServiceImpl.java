@@ -65,7 +65,7 @@ public class AuthServiceImpl implements AuthService {
 		korisnik.setAdresa(signupDto.getAdresa());
 		korisnik.setUsername(signupDto.getUsername());
 		korisnik.setPassword(passwordEncoder.encode(signupDto.getPassword()));
-		korisnik.setUloga("ROLE_KUPAC");
+		korisnik.setUloga("KUPAC");
 
 		korisnikRepository.save(korisnik);
 

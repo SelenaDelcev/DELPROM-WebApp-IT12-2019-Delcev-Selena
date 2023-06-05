@@ -5,7 +5,11 @@ import axios from 'axios';
 import { SpinnerLoading } from "../../Utils/SpinnerLoading";
 import { Link } from "react-router-dom";
 
-export const Carousel = () => {
+interface Props {
+    isLoggedIn: boolean;
+}
+
+export const Carousel: React.FC<Props> = ({ isLoggedIn }) => {
 
     const [products, setProducts] = useState<ProizvodModel[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -53,21 +57,21 @@ export const Carousel = () => {
                     <div className='carousel-item '>
                         <div className='row d-flex justify-content-center align-items-center'>
                             {products.slice(0, 2).map(product => (
-                                <ReturnBicycle product={product} key={product.proizvodId} />
+                                <ReturnBicycle product={product} key={product.proizvodId} isLoggedIn={isLoggedIn}/>
                             ))}
                         </div>
                     </div>
                     <div className='carousel-item'>
                         <div className='row d-flex justify-content-center align-items-center'>
                             {products.slice(1, 3).map(product => (
-                                <ReturnBicycle product={product} key={product.proizvodId} />
+                                <ReturnBicycle product={product} key={product.proizvodId} isLoggedIn={isLoggedIn}/>
                             ))}
                         </div>
                     </div>
                     <div className='carousel-item active'>
                         <div className='row d-flex justify-content-center align-items-center'>
                             {products.slice(2, 4).map(product => (
-                                <ReturnBicycle product={product} key={product.proizvodId} />
+                                <ReturnBicycle product={product} key={product.proizvodId} isLoggedIn={isLoggedIn}/>
                             ))}
                         </div>
                     </div>

@@ -3,7 +3,6 @@ import ProizvodModel from "../../models/ProizvodModel";
 import { SpinnerLoading } from "../Utils/SpinnerLoading";
 import axios from "axios";
 import { CheckoutBox } from "./CheckoutBox";
-import { CartList } from "../CartPage/CartList";
 
 interface Props {
     isLoggedIn: boolean;
@@ -15,15 +14,8 @@ export const ProductPage: React.FC<Props> = ({ isLoggedIn }) => {
     const [product, setProduct] = useState<ProizvodModel>();
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState(null);
-    const [cart, setCart] = useState<ProizvodModel[]>([]);
-
 
     const proizvodId = (window.location.pathname).split('/')[2];
-
-    const addToCart = (data: any) => {
-        const updatedCart = [...cart, { ...data, quantity: 1 }];
-        setCart(updatedCart);
-    };
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -57,7 +49,6 @@ export const ProductPage: React.FC<Props> = ({ isLoggedIn }) => {
 
     return (
         <div>
-            <CartList cart={cart} key={proizvodId}></CartList>
             <div className='container d-none d-lg-block'>
                 <div className='row mt-5'>
                     <div className='col-sm-2 col-md-2'>
@@ -72,7 +63,7 @@ export const ProductPage: React.FC<Props> = ({ isLoggedIn }) => {
                             <p>Namena: {product?.namena}</p>
                         </div>
                     </div>
-                    <CheckoutBox product={product} mobile={false} isLoggedIn={isLoggedIn} addToCart={addToCart} />
+                    <CheckoutBox product={product} mobile={false} isLoggedIn={isLoggedIn}/>
                 </div>
                 <hr />
             </div>

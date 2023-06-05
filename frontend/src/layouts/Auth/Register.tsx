@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 export const Register = () => {
     const [ime, setIme] = useState('');
@@ -40,70 +41,90 @@ export const Register = () => {
             console.log(response.data);
 
             if (response.status === 201) {
-                alert("Korisnik je uspesno registrovan");
+                toast.success("Korisnik je uspesno registrovan");
                 history.push('/login');
             } else {
-                alert("Registracija nije uspela");
+                toast.error("Registracija nije uspela");
             }
         } catch (error) {
+            toast.error("Neispravni podaci za registraciju. Proverite unos podataka");
             console.error(error);
         }
     };
 
     return (
-        <div>
-            <h2>Registracija</h2>
-            <form onSubmit={handleSubmit}>
-                <label>Ime:</label>
-                <input
-                    type="text"
-                    value={ime}
-                    onChange={(event) => setIme(event.target.value)}
-                />
-                <label>Prezime:</label>
-                <input
-                    type="text"
-                    value={prezime}
-                    onChange={(event) => setPrezime(event.target.value)}
-                />
-                <label>Datum rodjenja:</label>
-                <input
-                    type="date"
-                    value={datumRodjenja}
-                    onChange={(event) => setDatumRodjenja(event.target.value)}
-                />
-                <label>Email:</label>
-                <input
-                    type="text"
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                />
-                <label>Telefon:</label>
-                <input
-                    type="number"
-                    value={telefon}
-                    onChange={(event) => setTelefon(event.target.value)}
-                />
-                <label>Adresa:</label>
-                <input
-                    type="text"
-                    value={adresa}
-                    onChange={(event) => setAdresa(event.target.value)}
-                />
-                <label>Username:</label>
-                <input
-                    type="text"
-                    value={username}
-                    onChange={(event) => setUsername(event.target.value)}
-                />
-                <label>Password:</label>
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
-                />
-                <button type="submit">Potvrdi</button>
-            </form>
+        <div className="register-container">
+            <div className="auth-form">
+                <h2>Registracija</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label>Ime:</label>
+                        <input
+                            type="text"
+                            value={ime}
+                            onChange={(event) => setIme(event.target.value)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Prezime:</label>
+                        <input
+                            type="text"
+                            value={prezime}
+                            onChange={(event) => setPrezime(event.target.value)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Datum rodjenja:</label>
+                        <input
+                            type="date"
+                            value={datumRodjenja}
+                            onChange={(event) => setDatumRodjenja(event.target.value)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Email:</label>
+                        <input
+                            type="text"
+                            value={email}
+                            onChange={(event) => setEmail(event.target.value)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Telefon:</label>
+                        <input
+                            type="number"
+                            value={telefon}
+                            onChange={(event) => setTelefon(event.target.value)}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label>Adresa:</label>
+                        <input
+                            type="text"
+                            value={adresa}
+                            onChange={(event) => setAdresa(event.target.value)}
+                        />
+                    </div>
+                    <div className="form-group">
+                    <label>Username:</label>
+                    <input
+                        type="text"
+                        value={username}
+                        onChange={(event) => setUsername(event.target.value)}
+                    />
+                    </div>
+                    <div className="form-group">
+                    <label>Password:</label>
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(event) => setPassword(event.target.value)}
+                    />
+                    </div>
+                    <button type="submit">Potvrdi</button>
+                    <a className='signup'>Imas nalog? Prijavi se <Link to='/login'>ovde</Link></a>
+                </form>
+            </div>
         </div>
     );
 };

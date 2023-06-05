@@ -2,6 +2,7 @@ package delprom.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import delprom.dtos.JWTAuthResponse;
 
 @RestController
+@CrossOrigin("http://localhost:3000")
 @RequestMapping("/api/auth")
 @Tag(
 		name = "CRUD REST APIs for Auth Resource"
@@ -34,7 +36,7 @@ public class AuthController {
 			description = "Sign in")
 	@ApiResponse(
 			responseCode = "200",
-			description = "Http Status 201 SUCCESS"
+			description = "Http Status 200 SUCCESS"
 	)
 	@PostMapping(value = {"/login", "/signin"})
 	public ResponseEntity<JWTAuthResponse> login(@RequestBody LoginDto loginDto) {
@@ -51,7 +53,7 @@ public class AuthController {
 			summary = "SIGN UP",
 			description = "Sign up")
 	@ApiResponse(
-			responseCode = "200",
+			responseCode = "201",
 			description = "Http Status 201 SUCCESS"
 	)
     @PostMapping(value = {"/register", "/signup"})

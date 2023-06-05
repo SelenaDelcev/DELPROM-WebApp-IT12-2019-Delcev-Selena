@@ -259,7 +259,7 @@
   color: #000;
 }
 
-.img-fluid{
+.img-fluid {
   width: 150px;
   height: 150px;
   margin-top: 20px;
@@ -319,9 +319,10 @@
 .text1 {
   color: #000;
 }
+
 h5 {
   color: #0598B2;
-  font-style:oblique;
+  font-style: oblique;
 }
 
 .cost span {
@@ -384,7 +385,7 @@ h5 {
 
 .titleAboutOffer {
   font-weight: bold;
-  font-family:Georgia, 'Times New Roman', Times, serif
+  font-family: Georgia, 'Times New Roman', Times, serif
 }
 
 .text-uppercase {
@@ -395,4 +396,397 @@ h5 {
 
 .cart {
   margin-left: 12px;
+}
+
+.login-container {
+  display: flex;
+  align-items: center;
+  height: 87vh;
+  background: linear-gradient(to bottom, #2193b0, #6dd5ed);
+  /* Customize the gradient colors */
+}
+
+.register-container {
+  display: flex;
+  align-items: center;
+  height: 165vh;
+  background: linear-gradient(to bottom, #2193b0, #6dd5ed);
+  /* Customize the gradient colors */
+}
+
+.auth-form {
+  background-color: #fff;
+  padding: 50px;
+  /* Increase the padding to enlarge the form */
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  /* Set a max-width to control the width of the form */
+  margin: 0 auto;
+  /* Center the form horizontally */
+}
+
+.auth-form h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.auth-form .form-group {
+  margin-bottom: 20px;
+}
+
+.auth-form label {
+  display: block;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.auth-form input {
+  width: 100%;
+  /* Make the input elements span the entire width of the form */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.auth-form button {
+  width: 100%;
+  /* Make the button span the entire width of the form */
+  padding: 10px;
+  background-color: #2193b0;
+  /* Customize the button color */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.auth-form button:hover {
+  background-color: #1c768f;
+}
+
+.forgotPassword {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.signup {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #000;
+}
+
+.buttonViewItems {
+  background-color: #1c768f;
+  color: #fff;
+  width: 160px;
+  margin-bottom: 8px;
+}
+
+.buttonViewItems:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.buttonAddToCart {
+  background-color: darkgreen;
+  color: #fff;
+  width: 160px;
+  margin-top: 8px;
+}
+
+.buttonAddToCart:hover {
+  background-color: green;
+  color: #fff;
+}
+
+.cart-container {
+  padding: 2rem 4rem;
+}
+
+.cart-container h1 {
+  font-weight: 400;
+  font-size: 30px;
+  text-align: center;
+}
+
+.cart-container h3 {
+  font-weight: bolder;
+  font-size: 16px;
+  text-align: center;
+}
+
+.cart-container .titles {
+  margin: 2rem 0 1rem 0;
+}
+
+.cart-container .titles h2 {
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.cart-item,
+.cart-container .titles {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 3fr 1fr 1fr 1fr;
+  column-gap: 0.5rem;
+}
+
+.cart-item {
+  border-top: 1px solid rgb(187, 187, 187);
+  padding: 1rem 0;
+}
+
+.cart-container .titles .product-title {
+  padding-left: 0.5rem;
+}
+
+.cart-container .titles .total {
+  padding-right: 0.5rem;
+  justify-self: right;
+}
+
+.cart-item .cart-product {
+  display: flex;
+}
+
+.cart-item img {
+  width: 130px;
+  height: 110px;
+  margin-right: 1rem;
+}
+
+.cart-item .cart-product h3 {
+  font-weight: 400;
+}
+
+.cart-item .cart-product button {
+  border: none;
+  outline: none;
+  margin-top: 0.7rem;
+  cursor: pointer;
+  background: none;
+  color: gray;
+}
+
+.cart-item .cart-product button:hover {
+  color: black;
+}
+
+.cart-item .cart-product-quantity {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 130px;
+  max-width: 100%;
+  border: 0.5px solid rgb(177, 177, 177);
+  border-radius: 5px;
+}
+
+.cart-item .cart-product-quantity button {
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0.7rem 1.5rem;
+  cursor: pointer;
+}
+
+.cart-item .cart-product-quantity .count {
+  padding: 0.7rem 0;
+}
+
+.cart-item .cart-product-total-price {
+  padding-right: 0.5rem;
+  justify-self: right;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.cart-product-price {
+  color: red;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* cart summary */
+.cart-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-top: 1px solid rgb(187, 187, 187);
+  padding-top: 2rem;
+}
+
+.cart-checkout {
+  width: 270px;
+  max-width: 100%;
+  margin-left: auto;
+}
+
+.cart-checkout .subtotal {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+.cart-checkout .amount {
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.cart-checkout p {
+  font-size: 14px;
+  font-weight: 200;
+  margin: 0.5rem 0;
+}
+
+.cart-checkout button {
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  font-weight: 400;
+  letter-spacing: 1.15px;
+  background-color: #4b70e2;
+  color: #f9f9f9;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.continue-shopping,
+.start-shopping {
+  margin-top: 1rem;
+}
+
+.continue-shopping a,
+.start-shopping a {
+  color: gray;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.continue-shopping a span,
+.start-shopping a span {
+  margin-left: 0.5rem;
+}
+
+.remove-button {
+  background-color: transparent;
+  color: #ff6b6b;
+  border: none;
+  cursor: pointer;
+}
+
+.admin {
+  margin-right: 12px;
+}
+
+.choiceBox {
+  margin-top: 15px;
+}
+
+.infoForChoice {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #000;
+  font-style: italic;
+  margin-bottom: 5px;
+}
+
+.deliveryChoice {
+  margin-bottom: 3px;
+  margin-top: 10px;
+}
+
+.deliveryChoice {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.paymentChoice {
+  margin-bottom: 10px;
+}
+
+.payment-page {
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.CardElement {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.payment-page {
+  background-color: white;
+  height: 88.5vh;
+  /* Set the height to 100% of the viewport height */
+  display: flex;
+  justify-content: center;
+  /* Center the content horizontally */
+  align-items: center;
+}
+
+.payment-form-container {
+  background-color: #91dae7;
+  ;
+  border: 1px solid #111111;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 0 auto;
+  /* Center the container horizontally */
+  width: 400px;
+  /* Set a maximum width for the container */
+}
+
+.payment-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.form-field {
+  flex-basis: 48%;
+  /* Adjust the width as needed */
+  margin-bottom: 1rem;
+  /* Adjust the margin as needed */
+}
+
+.card-number-field {
+  order: 1;
+  /* Change the order to adjust the positioning */
+}
+
+.expiry-field {
+  order: 2;
+  /* Change the order to adjust the positioning */
+}
+
+.cvv-field {
+  order: 3;
+  /* Change the order to adjust the positioning */
+}
+
+.submit-button {
+  order: 4;
+  flex-basis: 100%;
+  background-color: #0598B2;
+  border: none;
+  border-radius: 10px;
+  padding: 6px;
+}
+
+.submit-button:hover {
+  background-color: #0b8fa7;
 }

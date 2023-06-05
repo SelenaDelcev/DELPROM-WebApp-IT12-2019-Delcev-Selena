@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +30,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin("http://localhost:3000")
 @Tag(
 		name = "CRUD REST APIs for Order Resource"
 )
@@ -56,6 +59,17 @@ public class PorudzbinaController {
 			return ResponseEntity.badRequest().body("Invalid order data");
 		}
 	}
+	
+	@PostMapping("/porudzbina/update-stripe-id")
+    public ResponseEntity<String> updateStripeId(@RequestParam(name = "porudzbinaId") Integer porudzbinaId,
+                                                 @RequestParam(name = "stripeId") String stripeId) {
+        try {
+            porudzbinaService.updateStripeId(porudzbinaId, stripeId);
+            return new ResponseEntity<>("Stripe ID updated successfully", HttpStatus.OK);
+        } catch (DataIntegrityViolationException ex) {
+            return ResponseEntity.badRequest().body("Invalid order data");
+        }
+    }
 
 	// get all orders rest api
 	@Operation(
@@ -107,6 +121,26 @@ public class PorudzbinaController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
 		}
 		return ResponseEntity.ok(porudzbine);
+	}
+	
+	// get all orders by logged in user
+	@Operation(
+			summary = "Get Orders By logged user REST API",
+			description = "Get orders by logged user REST API is used to get particular orders by user from the database")
+	@ApiResponse(
+			responseCode = "200",
+			description = "Http Status 200 SUCCESS"
+	)
+	@SecurityRequirement(name = "Bear Authentication")
+	@GetMapping("/mojeporudzbine")
+	public ResponseEntity<?> getPorudzbinaByAuthenticatedUser(Authentication authentication) {
+	    Integer korisnikId = Integer.parseInt(authentication.getPrincipal().toString());
+	    List<PorudzbinaDto> porudzbine = porudzbinaService.getPorudzbinaByKorisnikId(korisnikId);
+	    if (porudzbine.isEmpty()) {
+	        ErrorResponse errorResponse = new ErrorResponse("User has not made any orders.");
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+	    }
+	    return ResponseEntity.ok(porudzbine);
 	}
 
 	// get order by dostavaId and placanjeId

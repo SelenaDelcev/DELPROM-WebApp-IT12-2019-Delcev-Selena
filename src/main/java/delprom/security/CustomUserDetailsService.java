@@ -27,7 +27,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		Korisnik korisnik = korisnikRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail)
 		.orElseThrow(() -> new UsernameNotFoundException("User not found with email or username: " +usernameOrEmail));
 		Set<GrantedAuthority> authorities = new HashSet<>();
-		authorities.add(new SimpleGrantedAuthority("ROLE_" + korisnik.getUloga().toUpperCase()));
+		authorities.add(new SimpleGrantedAuthority("ROLE_" + korisnik.getUloga()));
 
 		return new org.springframework.security.core.userdetails.User(korisnik.getEmail(), korisnik.getPassword(), authorities);
 	}

@@ -1,7 +1,5 @@
 package delprom.services;
 
-import java.util.List;
-
 import delprom.dtos.ProizvodDto;
 import delprom.dtos.ProizvodResponse;
 
@@ -10,8 +8,10 @@ public interface ProizvodService {
 	ProizvodDto createProizvod(ProizvodDto proizvodDto);
 	
 	ProizvodResponse getAllProizvod(Integer pageNo, Integer pageSize, String sortBy, String sortDir);
+	
+	ProizvodResponse searchProizvod(String keywords, Integer pageNo, Integer pageSize, String sortBy, String sortDir);
 
-    List<ProizvodDto> getProizvodByKategorijaId(Integer kategorijaId);
+    ProizvodResponse getProizvodByKategorijaId(Integer kategorijaId, Integer pageNo, Integer pageSize, String sortBy, String sortDir);
 
     ProizvodDto getProizvodById(Integer proizvodId);
 
